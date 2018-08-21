@@ -31,7 +31,7 @@ public class Driver {
 		/* if file exists, add index after name */
 		while(f.exists() && !f.isDirectory()) {
 			i++;
-			fileName = fileName.substring(0, fileName.length() - 4) + i + ".txt";
+			fileName = (fileName.split("\\("))[0] + "(" + i + ").txt";
 			f = new File(fileName);
 		} 
 		
@@ -41,8 +41,8 @@ public class Driver {
 		FileWriter fw = null;
 
 		try {
-			fw = new FileWriter(fileName);
-			fw.append(text);
+			fw = new FileWriter(fileName, true);
+			fw.write(text);
 		    fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -93,7 +93,7 @@ public class Driver {
 			temp[i] += temp[i - 1];
 		
 		sorted = new int[n];
-		for(int i = n - 1; i > 0; i--){
+		for(int i = n - 1; i >= 0; i--){
 			sorted[temp[arr[i]]] = arr[i];
 			temp[arr[i]]--;
 		}
@@ -108,6 +108,14 @@ public class Driver {
 		write(msg, "log.txt");
 
 		return sorted;
+	}
+	
+	public static void partition() {
+		
+	}
+	
+	public static void quickSort() {
+		
 	}
 	
 	public static void main(String[] args) {
@@ -133,8 +141,9 @@ public class Driver {
 				case 1: 
 					inputType = "Manual";
 					String input;
+					sc.nextLine();
 					do{
-						sc.nextLine();
+						System.out.print("Input Number (x to escape):");
 						input = sc.nextLine();
 						try {
 							dataString += Integer.parseInt(input) + " ";
@@ -143,11 +152,12 @@ public class Driver {
 						}
 					} while(input != null);
 					
-					fileName = "mdata.txt";
+					fileName = "mdata(0).txt";
 					fileName = checkIfFileExists(fileName);
 					write(dataString, fileName);
 				try {
 					data = readData(fileName);
+					n = data.length;
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -159,9 +169,9 @@ public class Driver {
 					System.out.print("Data Size: ");
 					n = sc.nextInt();
 					data = generateRandomData(n);
-					msg = "\nGenerating Data... \n";
+					msg = "Generating Data... \n";
 					
-					fileName = "rdata.txt";
+					fileName = "rdata(0).txt";
 					fileName = checkIfFileExists(fileName);
 					for(int i = 0; i < n; i++) 
 						dataString += data[i] + " ";
@@ -180,11 +190,12 @@ public class Driver {
 					System.out.print("File Name: ");
 					sc.nextLine();
 					fileName = sc.nextLine();
-					msg = "\nReading Data... \n";
+					msg = "Reading Data... \n";
 					System.out.print(msg);
 					write(msg, "log.txt");
 					try {
 						data = readData(fileName);
+						n = data.length;
 					} catch (Exception e) {
 						System.out.println("File Not Found");
 						dataFileName = "";
@@ -199,7 +210,7 @@ public class Driver {
 		} while(selection == - 1);
 
 		msg = "Data Input Type: " + inputType + "\n";
-		msg += "Data Size: " + data.length + "\n";
+		msg += "Data Size: " + n + "\n";
 		msg += "Data: ";
 		for(int i = 0; i < data.length; i++) 
 			msg += data[i] + " ";
