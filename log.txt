@@ -1,0 +1,16 @@
+
+
+### STARTED NEW PROCESS ###
+
+Generating Data... 
+Data Input Type: Randomly Generated
+Data Size: 10
+Data: 9 5 4 2 8 10 1 7 6 3 
+
+Performing Insertion Sort... 
+Finished Insertion Sort... 
+Execution Time: 5 ms 
+Sorted Data: 1 2 3 4 5 6 7 8 9 10 
+
+### TERMINATED PROCESS ###
+

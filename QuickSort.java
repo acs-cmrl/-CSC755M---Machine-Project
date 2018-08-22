@@ -1,8 +1,5 @@
 
 public class QuickSort {
-	
-
-	
 	public static void sort(int arr[], int pivot, int right) {
 		long startTime, stopTime, elapsedTime;
 		

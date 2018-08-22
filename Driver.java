@@ -117,7 +117,10 @@ public class Driver {
 		do {
 			selection = sc.nextInt();
 			switch(selection) {
-				case 1:break;
+				case 1:	System.out.print("\n");
+						InsertionSort.sort(data);
+						System.out.print("\n");	
+						break;
 				case 2: System.out.print("\n");
 						QuickSort.sort(data, 0, data.length - 1);
 						System.out.print("\n");
