@@ -114,20 +114,29 @@ public class Driver {
 		System.out.println("2 - Quick Sort");
 		System.out.println("3 - Counting Sort");
 		
+		boolean withSteps;
 		do {
 			selection = sc.nextInt();
 			switch(selection) {
-				case 1:	System.out.print("\n");
-						InsertionSort.sort(data);
+				case 1:	
+						System.out.print("Show Steps?: (1 - Yes, 0 - No):");
+						withSteps = sc.nextInt() == 1;
+						System.out.print("\n");
+						InsertionSort.performSort(data, withSteps);
 						System.out.print("\n");	
 						break;
-				case 2: System.out.print("\n");
-						QuickSort.sort(data, 0, data.length - 1);
+				case 2: 
+						System.out.print("Show Steps?: (1 - Yes, 0 - No):");
+						withSteps = sc.nextInt() == 1;
+						System.out.print("\n");
+						QuickSort.performSort(data, withSteps);
 						System.out.print("\n");
 						break;
 				case 3:
+						System.out.print("Show Steps?: (1 - Yes, 0 - No):");
+						withSteps = sc.nextInt() == 1;
 						System.out.print("\n");
-						data = CountingSort.sort(data);
+						data = CountingSort.performSort(data, withSteps);
 						System.out.print("\n");
 						break;
 				default: selection = -1;

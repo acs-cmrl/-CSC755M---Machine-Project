@@ -1,6 +1,35 @@
 
 public class QuickSort {
-	public static void sort(int arr[], int pivot, int right) {
+	
+	public static void performSort(int arr[], boolean withSteps) {
+		if(withSteps) 
+			sortWithSteps(arr);
+		else 
+			sort(arr);
+			
+	}
+	
+	public static void sortWithSteps(int arr[]) {
+		String msg = "\nPerforming Quick Sort... \n";
+		System.out.print(msg);
+		FileHandler.write(msg, "log.txt");
+		
+		msg = "Original: ";
+		for(int k = 0; k < arr.length; k++) 
+			msg += arr[k] + " ";
+		msg += "\n";
+		System.out.print(msg);
+		FileHandler.write(msg, "log.txt");
+		
+		quickSortWithSteps(arr, 0, arr.length - 1);
+		
+		msg = "Finished Quick Sort... \n";
+		System.out.print(msg);
+		FileHandler.write(msg, "log.txt");
+		
+	}
+	
+	public static void sort(int arr[]) {
 		long startTime, stopTime, elapsedTime;
 		
 		String msg = "\nPerforming Quick Sort... \n";
@@ -10,7 +39,7 @@ public class QuickSort {
 		
 		startTime = System.nanoTime();
 		/* Start Timer */
-		quickSort(arr, pivot, right);
+		quickSort(arr, 0, arr.length - 1);
 		/* Stop Timer */
 		stopTime = System.nanoTime();
 		elapsedTime = (stopTime - startTime) / 1000;
@@ -20,6 +49,21 @@ public class QuickSort {
 		System.out.print(msg);
 		FileHandler.write(msg, "log.txt");
 		
+	}
+	
+	public static void quickSortWithSteps(int arr[], int pivot, int right) {
+		if(pivot < right) {
+			String msg = "PivotKey - " + arr[pivot] + ": ";
+    		for(int k = 0; k < arr.length; k++) 
+    			msg += arr[k] + " ";
+    		msg += "\n";
+    		System.out.print(msg);
+    		FileHandler.write(msg, "log.txt");
+    		
+			int mid = partition(arr, pivot, right);
+			quickSortWithSteps(arr, pivot, mid);
+			quickSortWithSteps(arr, mid + 1, right);
+		}
 	}
 	
 	public static void quickSort(int arr[], int pivot, int right) {
